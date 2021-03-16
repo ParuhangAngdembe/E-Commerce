@@ -1,53 +1,62 @@
 {% extends 'base.html' %}
 {%load static%}
-
 {%block content%}
 <!-- Product Slider -->
-<div id="slides" class="carousel slides" data-ride ="carousel">
-    <ul class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0"></li>
-        <li data-target="#slides" data-slide-to="1"></li>
-        <li data-target="#slides" data-slide-to="2"></li>
-    </ul>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{% static 'img/background.png' %}" alt="home" class="img-fluid">
-            <div class="carousel-caption">
-                <h2>Product Title</h2>
-                <p>Short Description</p>
-                
-                    <a href = "#" class="btn">
-                        <i class = "fa fa-shopping-cart"></i>
-                        <span>Shop Now</span>
-                    </a>
-                
+<div class="slider-section">
+    <div id="slides" class="carousel slides" data-ride ="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+            <li data-target="#slides" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/1.jpg' %}" alt="home" class="img-fluid">
+                <div class="carousel-caption">
+                    <h2>Product Title</h2>
+                    <p>Short Description</p>
+                        <a href = "#" class="btn">
+                            <i class = "fa fa-shopping-cart"></i>
+                            <span>Shop Now</span>
+                        </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/2.jpg' %}" alt="home" class="img-fluid">
+                <div class="carousel-caption">
+                    <h2>Product Title</h2>
+                    <p>Short Description</p>
+                    <button class="btn btn-outline-light btn-sm" type="button">
+                        <a href = "#" class="btn cart">
+                            <i class = "fa fa-shopping-cart"></i>
+                            <span>Shop Now</span>
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/7.jpg' %}" alt="home" class="img-fluid">
+                <div class="carousel-caption">
+                    <h2>Product Title</h2>
+                    <p>Short Description</p>
+                    <button class="btn btn-outline-light btn-sm" type="button">
+                        <a href = "#" class="btn cart">
+                            <i class = "fa fa-shopping-cart"></i>
+                            <span>Shop Now</span>
+                        </a>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="{% static 'img/background2.png' %}" alt="home" class="img-fluid">
-            <div class="carousel-caption">
-                <h2>Product Title</h2>
-                <p>Short Description</p>
-                <button class="btn btn-outline-light btn-sm" type="button">
-                    <a href = "#" class="btn cart">
-                        <i class = "fa fa-shopping-cart"></i>
-                        <span>Shop Now</span>
-                    </a>
-                </button>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static 'img/background3.png' %}" alt="home" class="img-fluid">
-            <div class="carousel-caption">
-                <h2>Product Title</h2>
-                <p>Short Description</p>
-                <button class="btn btn-outline-light btn-sm" type="button">
-                    <a href = "#" class="btn cart">
-                        <i class = "fa fa-shopping-cart"></i>
-                        <span>Shop Now</span>
-                    </a>
-                </button>
-            </div>
+    </div>
+</div>
+
+
+<div class="shop-area">
+    <div class="container-fluid">
+        <div class="section-title">
+            <h3>Featured Products</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fuga hic cupiditate voluptate corporis nisi, illum minima qui ut quas eos magni aliquid architecto recusandae unde ullam deleniti, saepe iusto!</p>
         </div>
     </div>
 </div>
