@@ -140,6 +140,9 @@ ul.carousel-indicators li.active{
     transition: none;
     transform: scale(0);
 }
+.box .overlay .btn span{
+    font-size: 12px;
+}
 .box:hover .overlay{
     transform: scale(1);
     transition-delay: calc(.1s);
@@ -150,12 +153,12 @@ ul.carousel-indicators li.active{
     margin: 6px;
     padding: 3px 3px;
     font-size: 25px;
-    transform: translateY(20px);
+    transform: translateY(200px);
     transition-property: transform;
     
 }
 .box:hover .overlay a{
-    transform:translateY(-102px);
+    transform:translateY(-100px);
 }
 .box .overlay a:hover{
     color:#F62217;
