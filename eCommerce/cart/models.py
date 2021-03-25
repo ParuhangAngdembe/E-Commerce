@@ -14,23 +14,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# class Slider(models.Model):
-#     name = models.CharField(max_length=300)
-#     image = models.TextField()
-#     description = models.TextField()
-#     url = models.TextField(blank = True)
-
-#     def __str__(self):
-#         return self.name
-
-# class Brand(models.Model):
-#     name = models.CharField(max_length=200)
-#     image = models.TextField()
-#     rank = models.IntegerField()
-
-#     def __str__(self):
-#         return self.name
-
 class Product(models.Model):
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length=200, unique= True)
@@ -55,23 +38,6 @@ class Product(models.Model):
     def get_cart_url(self):
         return reverse ('home:add-to-cart', kwargs = {'slug': self.slug})
 
-#-----------cart----------------
-# class Cart(models.Model):
-#     item = models.ForeignKey(Product, on_delete = models.CASCADE)
-#     slug = models.CharField(max_length= 100)
-#     quantity = models.IntegerField(default=1)
-#     user = models.CharField(max_length = 200)
-#     # date = models.DateTimeField
-#     total = models.IntegerField(null = True)
-
-#     def __str__(self):
-#         return self.user
-
-#     def delete_cart_url(self):
-#         return reverse ('home:delete-cart-item', kwargs = {'slug': self.slug})
-
-#     def minus_cart_url(self):
-#         return reverse ('home:minus-cart-item', kwargs = {'slug': self.slug})
 
 
 class Contact(models.Model):

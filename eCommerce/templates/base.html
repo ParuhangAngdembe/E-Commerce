@@ -29,14 +29,16 @@
 <div class="top-bar">
     <div class="container-fluid">
         <div class="row">
+            {% for info in contact %}
             <div class="col-sm-6">
                 <i class="fa fa-envelope"></i>
-                <span>support@gmail.com</span>
+                <span>{{info.email}}</span>
             </div>
             <div class="col-sm-6">
                 <i class="fa fa-phone"></i>
-                <span>9860000000</span>
+                <span>+977 {{info.phone}}</span>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -122,17 +124,20 @@
                 <div class="footer-widget">
                     <h2>Get In Touch</h2>
                 </div>
+                {% for info in contact %}
                 <div class="contact-info">
                     <p><i class="fa fa-map-marker"></i>
-                        <span>NeTure, Kathmandu, Nepal</span>
+                        <span>{{info.address}}</span>
                     </p>
                     <p><i class="fa fa-envelope"></i>
-                        <span>email@gmail.com</span>
+                        <span>{{info.email}}</span>
+                        <!-- <p>Send us your query anytime!</p> -->
                     </p>
                     <p><i class="fa fa-phone"></i>
-                        <span>+977 986O-903-O54</span>
+                        <span>+(977) {{info.phone}}</span>
                     </p>
                 </div>
+                {% endfor %}
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-widget">
