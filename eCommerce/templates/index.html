@@ -100,11 +100,9 @@
                         <h3 class="title">{{product.name}}</h3>
                         <div class="sub-info">
                             <!-- <button class="btn btn-outline-light btn-sm" type="button">Add To Cart</button> -->
-                            <button type="button" class="btn btn-sm">
-                                <a href = "#" class="cart">
+                            <button data-product={{product.name}} data-action="add" type="button" class="btn btn-outline-danger update-cart">
                                     <i class = "fa fa-shopping-cart"></i>
-                                    <span>Add to cart</span>
-                                </a>
+                                    <span>Add to cart</span>                                
                             </button>
                             <button type="button" class="btn btn-sm">
                                 <a href = "#" class="view">

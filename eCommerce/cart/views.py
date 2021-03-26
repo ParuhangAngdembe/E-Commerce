@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.base import View
+from django.contrib.auth.forms import UserCreationForm
+
+from .forms import CreateUserForm
 from .models import *
 
 # Create your views here.
@@ -9,8 +12,6 @@ from .models import *
 # class HomeView(BaseView):
 
 
-# def base(request):
-#         return render(request, 'base.html')
 
 class BaseView(View):
         views={}
@@ -21,3 +22,21 @@ class HomeView(BaseView):
                 self.views['contact'] = Contact.objects.all()
                 
                 return render(request, 'index.html', self.views)
+
+
+def registration(request):
+        form = CreateUserForm()
+        if request.method == "POST":
+                form = CreateUserForm(request.POST)
+                if form.is_valid():
+                        form.save()
+
+        context = {
+                'form': form,
+               
+        }
+
+        return render(request, 'registration.html', context)
+
+def login(request):
+        return render(request, 'login.html')
