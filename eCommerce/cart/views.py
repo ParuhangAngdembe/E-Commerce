@@ -20,8 +20,15 @@ class HomeView(BaseView):
         def get(self,request):
                 self.views['new_products'] = Product.objects.filter(label = 'new')[0:8]
                 self.views['contact'] = Contact.objects.all()
-                
+                self.views['categories'] = Category.objects.all()
+
                 return render(request, 'index.html', self.views)
+
+class ProductDetailView(BaseView):
+        def get(self, request, slug):
+                self.views['product_detail'] = Product.objects.filter(slug = slug)
+
+                return render(request, 'productdetail.html', self.views)
 
 
 def registration(request):
@@ -41,6 +48,5 @@ def registration(request):
 def login(request):
         return render(request, 'login.html')
 
-def productDetail(request):
-        return render(request, 'productdetail.html')
+
 
