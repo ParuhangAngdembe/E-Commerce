@@ -40,3 +40,7 @@ def registration(request):
 
 def login(request):
         return render(request, 'login.html')
+
+def productDetail(request):
+        return render(request, 'productdetail.html')
+
