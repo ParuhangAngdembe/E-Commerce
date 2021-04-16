@@ -1,0 +1,14 @@
+
+body{
+    background-color: #ebeff5;
+}
+
+.row .card .add_btn{
+    background-color: blue;
+    color:whitesmoke;
+}
+.row .card .add_btn:hover{
+    background-color: red;
+    color: black;
+}
+

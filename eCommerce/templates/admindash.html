@@ -1,0 +1,65 @@
+{%  extends 'adminmain.html' %}
+
+{% block content %}
+
+
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="rowcontainer col-md-5">
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block add_btn" href="/createcategory">Add Category</a>
+                <table class="table table-md">
+                    <tr>
+                        <th>Category</th>
+                        <th>Date Added</th>
+                    </tr>
+                    {%for category in ttl_cat%}
+                    <tr>
+                        <td>{{category.name}}</td>
+                        <td>{{product.date_created}}</td>
+
+                        <td><a class="btn btn-sm btn-info" href="{% url 'home:updatecategory' category.slug %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'home:deletecategory' category.slug %}">Delete</a></td>
+                    </tr>
+                    {%endfor%}    
+            
+                </table>
+            </div>
+        </div>
+
+        <div class="rowcontainer col-md-7">
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block add_btn" href="/createproduct">Add Product</a>
+                <table class="table table-md">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Date Added</th>
+                        <th>Status</th>
+                        <th>Label</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                    </tr>
+                    {%for product in ttl_prd%}
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.date_created}}</td>
+                        <td>{{product.status}}</td>
+                        <td>{{product.label}}</td>
+
+                        <td><a class="btn btn-sm btn-info" href="{% url 'home:updateproduct' product.slug %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'home:deleteproduct' product.slug %}">Delete</a></td>
+                    </tr>
+                    {%endfor%}    
+                </table>
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+{% endblock %}
+

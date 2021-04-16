@@ -2,19 +2,23 @@
 from django.db import models
 from django.shortcuts import reverse
 #vlaue, name
-STATUS = (('In', 'In Stock'),('Out', 'Out Of Stock'))
-LABEL = (('new', 'New Product'), ('hot', 'Hot Product'), ('sale', 'Sale Product'))
+STATUS = (('In Stock', 'In Stock'),('Out of Stock', 'Out Of Stock'))
+LABEL = (('New Product', 'New Product'), ('Hot Product', 'Hot Product'), ('Sale Product', 'Sale Product'))
 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length= 200, unique=True)
     image = models.CharField(max_length=200, blank= True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name
 
+
+
 class Product(models.Model):
+
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length=200, unique= True)
     price = models.IntegerField()
@@ -26,6 +30,7 @@ class Product(models.Model):
     status = models.CharField(max_length=50, choices = STATUS)
     label = models.CharField(max_length=200, choices= LABEL, default= 'new') #or blank = True
     image = models.TextField(blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name
