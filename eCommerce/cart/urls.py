@@ -19,6 +19,12 @@ urlpatterns = [
     path("updatecategory/<slug>/", updateCategory, name='updatecategory'),
     path("deletecategory/<slug>/", deleteCategory, name='deletecategory'),
 
-#     path("register/", registration, name='register'),
-#     path("login/", login, name='login'),
+    path("register/", registration, name='register'),
+    path("login/", login, name='login'),
+
+
+    
+    path("cart/", cart, name='cart'),
+    path("updateitem/", updateItem, name='updateitem'),
 ]
+ 

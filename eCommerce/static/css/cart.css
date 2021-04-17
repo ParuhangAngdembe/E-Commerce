@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+}
+:root {
+    --text-clr: #4f4f4f;
+}
+p {
+    color: #6c757d;
+}
+
+.table .items{
+    float:left;
+    margin-left:30px;
+}
+.table .btn{float:right;}
+
+a {
+    text-decoration: none;
+    color: var(--text-clr);
+}
+a:hover {
+    text-decoration: none;
+    color: var(--text-clr);
+}
+
+.main_cart {
+    background: #fff;
+}
+.card {
+    border: none;
+}
+.product_img img {
+    min-width: 200px;
+    max-height: 200px;
+}
+.product_name {
+    color: black;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.card-title p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.remove-and-wish p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.chng-quantity{
+    flex:1;
+    width: 20px;
+    height: 20px;
+    color: red;
+}
