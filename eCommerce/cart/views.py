@@ -21,7 +21,8 @@ class BaseView(View):
 
 class HomeView(BaseView):
         def get(self,request):
-                self.views['new_products'] = Product.objects.filter(label = 'New Product')[0:8]
+                self.views['new_products'] = Product.objects.filter(label="New Product")[0:8]
+                self.views['sale'] = Product.objects.filter(label="Sale Product")[0:3]
                 self.views['contact'] = Contact.objects.all()
                 self.views['categories'] = Category.objects.all()
 
@@ -33,7 +34,12 @@ class ProductDetailView(BaseView):
 
                 return render(request, 'productdetail.html', self.views)
 
-
+def allProducts(request):
+        allproduct = Product.objects.all()
+        context = {
+                'allproduct': allproduct,
+                }
+        return render(request, 'allproduct.html', context)
 #---------------------------------------------------------------------------Admin Dashboard
 def main(request):
         ttl_prd = Product.objects.all()	
@@ -60,7 +66,7 @@ def updateProduct(request, slug):
         form = ProductForm(instance = data)
 
         if request.method == 'POST':
-                form = ProductForm(request.POST, instance = data)
+                form = ProductForm(request.POST, request.FILES, instance = data)
                 if form.is_valid():
                         form.save()
                         return redirect('/main')

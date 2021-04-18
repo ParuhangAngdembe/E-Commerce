@@ -20,7 +20,7 @@
                     <div class="row align-items-center">
                         {% for product in product_detail %}
                             <div class="col-md-5">
-                                <img  class="img-fluid" src= "{{product.image}}" alt="product image">
+                                <img  class="img-fluid" src= "{{product.image.url}}" alt="product image">
                             </div>
                             <div class="col-md-7">
                                 <div class="product-content">
@@ -38,27 +38,10 @@
                                         <span>{{product.price}}</span>        
                                     </div>
                                     
-                                    <div class="quantity">
-                                        <h4>Quantity:</h4>
-                                        <div class="qty">
-                                            <button class="btn-minus">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                            <input type="text" value="0">
-                                            <button class="btn-plus">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="action">
-                                        <button data-product={{product.name}} data-action="add" type="button" class="btn btn-outline-danger update-cart">
+                                        <button data-product={{product.id}} data-action="add" type="button" class="btn btn-outline-danger update-cart">
                                             <i class = "fa fa-shopping-cart"></i>
                                             <span>Add to cart</span>                                
-                                        </button>
-                                        <button data-product={{product.name}} data-action="add" type="button" class="btn btn-outline-danger update-cart">
-                                            <i class = "fa fa-shopping-bag"></i>
-                                            <span>Buy Now</span>                                
                                         </button>
                                     </div>
 

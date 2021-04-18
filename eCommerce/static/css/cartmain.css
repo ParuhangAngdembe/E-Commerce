@@ -62,19 +62,24 @@ a:hover {
 
 
 /* -------------------------------checkout------------------ */
-#shipping-info .title p{
-    background-color: rgb(252, 42, 42);
+.boxmain{
+    text-align: center;
 }
-#user-info{
-    /* width: auto; */
-    padding-top: 10px;
-   
+
+.box-element h3{
+    padding-top:20px;
 }
+
 .form-control{
-    width : 600px;
-    margin: 5px;
+    width : 300px;
+    margin: 4 auto;
+    
 }
 .dropdown .dropdown-toggle{
     text-decoration: none;
     color:rgb(252, 42, 42);
+}
+.btn{
+    margin: 0;
+    width : 300px;
 }

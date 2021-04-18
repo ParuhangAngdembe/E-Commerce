@@ -11,16 +11,16 @@
             <li data-target="#slides" data-slide-to="2"></li>
         </ul>
         <div class="carousel-inner">
-            {% for category in categories %}
+            {% for sales in sale %}
             <div class="carousel-item {% if forloop.counter0 == 0%}active{% endif %}">
-                <img src="{{category.image}}" alt="home" class="img-fluid">
+                <img src="{{sales.image.url}}" alt="home" class="img-fluid">
                 <div class="carousel-caption">
-                    <h2>Product Title</h2>
-                    <p>Short Description</p>
-                        <a href = "#" class="btn">
-                            <i class = "fa fa-shopping-cart"></i>
-                            <span>Shop Now</span>
-                        </a>
+                    <h2>{{sales.name}}</h2>
+                    <p>{{sales.description}}</p>
+                    <button data-product={{sales.id}} data-action="add" type="button" class="btn btn-danger add-btn update-cart">
+                        <i class = "fa fa-shopping-cart"></i>
+                        <span>Add to cart</span>                                
+                </button>
                 </div>
             </div>
             {%endfor%}
@@ -41,7 +41,7 @@
 
 <div class="feature">
     <div class="container-fluid">
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-lg-3 col-md-6 feature-col">
                 <div class="feature-content">
                     <i class="fab fa-cc-mastercard"></i>
@@ -54,7 +54,7 @@
             <div class="col-lg-3 col-md-6 feature-col">
                 <div class="feature-content">
                     <i class="fa fa-truck"></i>
-                    <h2>Worldwide Delivery</h2>
+                    <h2>Delivery Service</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur elit
                     </p>
@@ -72,7 +72,7 @@
             <div class="col-lg-3 col-md-6 feature-col">
                 <div class="feature-content">
                     <i class="fa fa-comments"></i>
-                    <h2>24/7 Support</h2>
+                    <h2>24/7Live Support</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur elit
                     </p>
@@ -85,8 +85,8 @@
 <div class="shop-area">
     <div class="container-fluid">
         <div class="section-title">
-            <h3>Featured Products</h3>
-            <p>Browse our finest products here.</p>
+            <h3>New Products</h3>
+            <p>Browse our Newest products here.</p>
         </div>
         
         <div class="row">
@@ -95,7 +95,7 @@
                 <div class="onecontainer">
                     <div class="image">
                         <a href="{{product.get_url}}">
-                            <img  class="img-fluid" src= "{{product.image}}" alt="product image"> 
+                            <img  class="img-fluid" src= "{{product.image.url}}" alt="product image"> 
                         </a>              
                     </div>
                     <div class="info">
@@ -124,11 +124,16 @@
         </div>
         {% endfor %}
         
-        <div class="view-products">
-            <a>
-            <button class="btn btn-primary">View More</button>
-            </a>
+        <div class="container-fluid">
+            <div class="view-products">
+                <button type="button" class="btn btn-lg btn-danger">
+                    <a href = "/products" class="view">
+                        <span>All Products</span>
+                    </a>
+                </button>
+            </div>
         </div>
+        
         
     </div>
 </div>

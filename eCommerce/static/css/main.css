@@ -111,14 +111,21 @@ a.dropdown-toggle:hover{
 ul.carousel-indicators li.active{
     background: black;
 }
+/* -----------------------------------Info Area-------------- */
+
+.feature .feature-col{
+    padding: 12px;   
+}
+
 
 /*------------------ shop area ------------------*/
 .shop-area{
-    padding-top:8px;
+    padding-top:18px;
     background-color: rgb(226, 224, 224);
 }
+
 .section-title{
-    padding-top:8px;
+    padding-top:6px;
     text-align: center;
     background-color: rgb(247, 243, 243);
 }
@@ -136,16 +143,24 @@ ul.carousel-indicators li.active{
      .f_product .image img { width: 298px; 
       }
 }
-/*@media screen and ( max-width: 973px ) {
-    .f_product .image img { width: 300px; } 
-    .f_product .image img { height: 320px; } }*/
 
-/* @media screen and ( min-width: 857px ){
-    .f_product .image img { width: 300px; }
-} */
 .f_product .image img { height: 220px; }
 
 
+/* ------------------------View More Products */
+.view-products button:hover{
+    color:white;
 
+}
 
+.view-products a{
+    color: white;
+}
+.view-products a:hover{
+  text-decoration: none;
 
+}
+.view-products .btn{
+    width:100%;
+    margin:auto;
+}

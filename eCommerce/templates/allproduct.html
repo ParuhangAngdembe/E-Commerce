@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block content%}
+<div class="shop-area">
+    <div class="container-fluid">
+        <div class="section-title">
+            <h3>All Products</h3>
+            <p>Browse all our finest products here.</p>
+        </div>
+        <div class="row">
+            {%for product in allproduct%}
+                <div class="f_product col-xs-12 col-sm-6 col-md-3">
+                    <div class="onecontainer">
+                        <div class="image">
+                            <a href="{{product.get_url}}">
+                                <img class="img-fluid" src="{{product.image.url}}" alt="product image">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h3 class="title">{{product.name}}</h3>
+                            <div class="sub-info">
+                                <!-- <button class="btn btn-outline-light btn-sm" type="button">Add To Cart</button> -->
+                                <button data-product={{product.id}} data-action="add" type="button" class="btn btn-outline-danger add-btn update-cart">
+                                    <i class = "fa fa-shopping-cart"></i>
+                                    <span>Add to cart</span>                                
+                            </button>
+                                <button type="button" class="btn btn-sm">
+                                    <a href="{{product.get_url}}" class="view">
+                                        <span>View Product</span>
+                                    </a>
+                                </button>
+                                <div class="price">
+                                    {% if product.discounted_price > 0 %}
+                                    {{product.discounted_price}}/- <span>{{ product.price }}/-</span>
+                                    {% else %}
+                                    <span>{{product.price}}/-</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}
