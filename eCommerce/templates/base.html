@@ -41,7 +41,7 @@
         const csrftoken = getToken('csrftoken');
     </script>
     <!--template stylesheet-->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
 
     <title>NeTure</title>
 
@@ -105,16 +105,16 @@
     <div class="bottom-bar">
         <div class="conatiner-fluid">
             <div class="row align-items-center">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="logo">
-                        <a href="#">
+                        <a href="/">
                             <img src="{% static 'img/logo.png '%}" alt="Logo">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="search">
-                        <input type="text" placeholder="Search">
+                        <input type="text" placeholder="Search. . . . .">
                         <button> <i class="fa fa-search"></i></button>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
 
     {% block content %}
 
-    {%endblock%}
+    {% endblock %}
 
     <!-- Footer Start -->
     <div class="footer">

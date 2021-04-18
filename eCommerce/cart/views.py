@@ -181,3 +181,7 @@ def updateItem(request):
                 orderItem.delete()
 
         return JsonResponse('Item was added', safe=False)
+
+
+def checkout(request):
+        return render(request, 'checkout.html')

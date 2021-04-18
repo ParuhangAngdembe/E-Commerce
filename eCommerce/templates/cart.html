@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 {%block content%}
 <html lang="en">
@@ -13,8 +13,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 		integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
 		crossorigin="anonymous" />
-	<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
-	<title>ThapaCart</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/cartmain.css' %}">
+	
 </head>
 
 <body class="bg-light">
@@ -34,7 +34,7 @@
 										<h5 class="py-4 font-weight-bold items">Cart Total: {{order.get_cart_total}}</h5>
 									</th>
 									<th>
-										<a class="py-3 btn btn-success btn-sm" href="#">Checkout</a>
+										<a class="py-3 btn btn-success btn-sm" href="/checkout">Checkout</a>
 									</th>
 								</tr>
 							</div>

@@ -58,3 +58,23 @@ a:hover {
     height: 20px;
     color: red;
 }
+
+
+
+/* -------------------------------checkout------------------ */
+#shipping-info .title p{
+    background-color: rgb(252, 42, 42);
+}
+#user-info{
+    /* width: auto; */
+    padding-top: 10px;
+   
+}
+.form-control{
+    width : 600px;
+    margin: 5px;
+}
+.dropdown .dropdown-toggle{
+    text-decoration: none;
+    color:rgb(252, 42, 42);
+}

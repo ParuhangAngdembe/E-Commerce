@@ -64,6 +64,35 @@ a.dropdown-toggle:hover{
     background-color:red;
 }
 
+/* -------------------bottom bar----------------- */
+.bottom-bar .logo img{
+    padding: 2px;
+    margin-left: 60px;
+}
+.bottom-bar .search{
+    float: right;
+    margin-right: 60px;
+}
+.bottom-bar .search input{
+    width: 400px;
+    border-top:none;
+    border-left:none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: 4px 4px 3px grey;
+}
+.bottom-bar .search button{
+    height: 32px;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+.bottom-bar .search button:hover{
+  background-color: red;
+}
+
+
 /*------------------ carousel-item ------------------*/
 .carousel-item img{
     width: 100%;
@@ -115,3 +144,8 @@ ul.carousel-indicators li.active{
     .f_product .image img { width: 300px; }
 } */
 .f_product .image img { height: 220px; }
+
+
+
+
+
