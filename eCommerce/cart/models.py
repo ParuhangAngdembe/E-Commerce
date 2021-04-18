@@ -19,7 +19,7 @@ class Customer(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length= 200, unique=True)
-    image = models.CharField(max_length=200, blank= True)
+    
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
