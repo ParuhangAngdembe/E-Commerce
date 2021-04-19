@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {%load static%}
+{%block title%}Neture{%endblock%}
 {%block content%}
 
 <!-- Product Slider -->
@@ -126,10 +127,8 @@
         
         <div class="container-fluid">
             <div class="view-products">
-                <button type="button" class="btn btn-lg btn-danger">
-                    <a href = "/products" class="view">
-                        <span>All Products</span>
-                    </a>
+                <button type="button" class="btn btn-lg btn-danger" onclick="window.location.href='/products'">
+                    All Products
                 </button>
             </div>
         </div>
