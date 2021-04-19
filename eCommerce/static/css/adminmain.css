@@ -11,4 +11,9 @@ body{
     background-color: red;
     color: black;
 }
-
+.nav-item p{
+    color: white;
+}
+li{
+    margin:4px;
+}
