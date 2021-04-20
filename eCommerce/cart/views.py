@@ -274,3 +274,6 @@ def contact(request):
 
     return render(request,'contact.html', context)
 
+#---------------------------------------------------------------Empty Page
+def emptyLink(request):
+    return render(request, 'empty.html')

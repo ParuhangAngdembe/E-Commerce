@@ -31,5 +31,8 @@ urlpatterns = [
 
     path("contact/", contact, name='contact'),
     path("messages/", allMessages, name='messages'),
+
+    path("empty/", emptyLink, name='empty'),
+
 ]
  
