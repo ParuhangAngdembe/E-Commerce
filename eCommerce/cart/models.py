@@ -14,8 +14,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.username
-
-
+        
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length= 200, unique=True)

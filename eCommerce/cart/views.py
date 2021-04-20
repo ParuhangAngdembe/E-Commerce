@@ -44,8 +44,8 @@ def allProducts(request):
         'allproduct': allproduct,
     }
     return render(request, 'allproduct.html', context)
-# ---------------------------------------------------------------------------Admin Dashboard
 
+# ---------------------------------------------------------------------------Admin Dashboard
 
 @login_required(login_url='/login')
 @allowed_users(allowed_roles=['admin', ])
@@ -61,7 +61,6 @@ def main(request):
     }
     return render(request, 'admindash.html', context)
 
-
 @login_required(login_url='/login')
 def createProduct(request):
     form = ProductForm()
@@ -74,7 +73,6 @@ def createProduct(request):
         'form': ProductForm,
     }
     return render(request, 'createproduct.html', context)
-
 
 @login_required(login_url='/login')
 def updateProduct(request, slug):
@@ -92,7 +90,6 @@ def updateProduct(request, slug):
     }
 
     return render(request, 'createproduct.html', context)
-
 
 @login_required(login_url='/login')
 def deleteProduct(request, slug):
@@ -161,7 +158,6 @@ def deleteCategory(request, slug):
 
 # --------------------------------------------------------------------------------CART
 
-
 @login_required(login_url='/login')
 def cart(request):
     if request.user.is_authenticated:
@@ -189,9 +185,6 @@ def cart(request):
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         context = {'items': items, 'order': order, }
         return render(request, 'cart.html', context)
-
-    
-
 
 @login_required(login_url='/login')
 def updateItem(request):
