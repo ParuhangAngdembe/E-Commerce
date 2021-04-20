@@ -1,0 +1,40 @@
+{%  extends 'adminmain.html' %}
+
+{% block content %}
+
+
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="rowcontainer col-md-12">
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block add_btn" href="/main">Return To Home</a>
+                <table class="table table-md">
+                    <tr>
+                        <th>Sender</th>
+                        <th>Label</th>
+                        <th>Date Added</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                    </tr>
+                    {%for msg in messages%}
+                    <tr>
+                        <td>{{msg.name}}</td>
+                        <td>{{msg.label}}</td>
+                        <td>{{msg.date_created}}</td>
+                        <td>{{msg.email}}</td>
+                        <td>{{msg.subject}}</td>
+                        <td>{{msg.message}}</td>
+                        
+                    </tr>
+                    {%endfor%}    
+            
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

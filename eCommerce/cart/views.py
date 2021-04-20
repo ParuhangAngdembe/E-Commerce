@@ -52,9 +52,12 @@ def allProducts(request):
 def main(request):
     ttl_prd = Product.objects.all()
     ttl_cat = Category.objects.all()
+
+    messages = ContactUs.objects.all()[0:3]
     context = {
         'ttl_prd': ttl_prd,
         'ttl_cat': ttl_cat,
+        'messages': messages,      
     }
     return render(request, 'admindash.html', context)
 
@@ -104,6 +107,12 @@ def deleteProduct(request, slug):
 
     return render(request, 'deleteproduct.html', context)
 
+def allMessages(request):
+    allmsg = ContactUs.objects.all()
+    context = {
+        'messages': allmsg,
+    }
+    return render(request, 'allmsg.html', context)
 
 # ---------------------------------------------------------------------------CATEGORY CRUD
 @login_required(login_url='/login')
@@ -240,7 +249,6 @@ def logoutUser(request):
 
 # -------------------------------------------------------------Contact page-----------
 
-
 def contact(request):
     context = {}
     if request.method == "POST":
@@ -251,7 +259,7 @@ def contact(request):
         message = request.POST['message']
 
         data =ContactUs.objects.create(
-# models' field name = vairable
+        # models' field name = vairable
             name = name,
             email = email,
             subject = subject,
@@ -260,7 +268,9 @@ def contact(request):
         data.save()
         context['success']="Your Message Was Sent"
 
+   
     context['contact']=Contact.objects.all()
     # yo objects vanna khojeko, database ko 'row'
 
     return render(request,'contact.html', context)
+

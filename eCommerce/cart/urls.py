@@ -29,7 +29,7 @@ urlpatterns = [
     path("login/", loginUser, name='login'),
     path("logout/", logoutUser, name='logout'),
 
-     path("contact/", contact, name='contact'),
-    
+    path("contact/", contact, name='contact'),
+    path("messages/", allMessages, name='messages'),
 ]
  

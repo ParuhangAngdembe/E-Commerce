@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 #vlaue, name
 STATUS = (('In Stock', 'In Stock'),('Out of Stock', 'Out Of Stock'))
 LABEL = (('New Product', 'New Product'), ('Hot Product', 'Hot Product'), ('Sale Product', 'Sale Product'))
-
+Message = (('New','New'), ('Read','Read'))
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -98,7 +98,7 @@ class Contact(models.Model):
     email = models.CharField(max_length= 100)
     phone = models.CharField(max_length = 20 , null = True, blank = False)
     address = models.CharField(max_length = 100, null = True, blank = False )
-    street = models.CharField(max_length=100)
+    street = models.CharField(max_length=100,null = True, blank = False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
@@ -109,6 +109,8 @@ class ContactUs(models.Model):
     email = models.CharField(max_length=250)
     subject = models.CharField(max_length=550)
     message = models.TextField(null=True)
+    label = models.CharField(max_length=200, choices= Message, default= 'New')
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name

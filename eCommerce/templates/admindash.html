@@ -7,6 +7,35 @@
 <br>
 <div class="container-fluid">
     <div class="row">
+        <div class="rowcontainer col-md-12">
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block add_btn" href="/messages">View All Messages</a>
+                <table class="table table-md">
+                    <tr>
+                        <th>Sender</th>
+                        <th>Label</th>
+                        <th>Date Added</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                    </tr>
+                    {%for msg in messages%}
+                    <tr>
+                        <td>{{msg.name}}</td>
+                        <td>{{msg.label}}</td>
+                        <td>{{msg.date_created}}</td>
+                        <td>{{msg.email}}</td>
+                        <td>{{msg.subject}}</td>
+                        <td>{{msg.message}}</td>
+                        
+                    </tr>
+                    {%endfor%}    
+            
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="rowcontainer col-md-5">
             <div class="card card-body">
                 <a class="btn btn-sm btn-block add_btn" href="/createcategory">Add Category</a>
@@ -18,7 +47,7 @@
                     {%for category in ttl_cat%}
                     <tr>
                         <td>{{category.name}}</td>
-                        <td>{{product.date_created}}</td>
+                        <td>{{category.date_created}}</td>
 
                         <td><a class="btn btn-sm btn-info" href="{% url 'home:updatecategory' category.slug %}">Update</a></td>
                         <td><a class="btn btn-sm btn-danger" href="{% url 'home:deletecategory' category.slug %}">Delete</a></td>
@@ -58,6 +87,7 @@
             </div>
         </div> 
     </div>
+   
 </div>
 
 
