@@ -66,10 +66,10 @@ def main(request):
 def createProduct(request):
     form = ProductForm()
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/createproduct')
+            return redirect('/main')
     context = {
         'form': ProductForm,
     }
@@ -165,15 +165,32 @@ def deleteCategory(request, slug):
 @login_required(login_url='/login')
 def cart(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer)
-        items = order.orderitem_set.all()
+        # customer = request.user.customer
+        customer = request.user
+        # order, created = Order.objects.get_or_create(customer=customer)
+        orders = Order.objects.filter(customer=customer)
+        items = []
+        total = 0
+        cart_items = 0
+        for order in orders:
+            itemlist = OrderItem.objects.filter(order=order)
+            for item in itemlist:
+                total = total + item.product.price * item.quantity
+                cart_items = cart_items + 1
+                items.append(item)
+        # items = OrderItem.objects.filter(order=order)
+        print(orders)
+        print(items)
+        order = {'get_cart_total': total, 'get_cart_items': cart_items}
+        context = {'items': items, 'order': order, }
+        return render(request, 'cart.html', context)
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
+        context = {'items': items, 'order': order, }
+        return render(request, 'cart.html', context)
 
-    context = {'items': items, 'order': order, }
-    return render(request, 'cart.html', context)
+    
 
 
 @login_required(login_url='/login')
@@ -184,7 +201,7 @@ def updateItem(request):
     print('productId:', productId)
     print('action:', action)
 
-    customer = request.user.customer
+    customer = request.user
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer)
     orderItem, created = OrderItem.objects.get_or_create(
@@ -215,9 +232,11 @@ def registerUser(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account Was Created For ' + user)
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            customer = Customer(user=user, username=username, email=user.email)
+
+            messages.success(request, 'Account Was Created For ' + username)
             return redirect('/login')
 
     context = {'form': form}

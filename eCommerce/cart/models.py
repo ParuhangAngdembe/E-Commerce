@@ -13,7 +13,7 @@ class Customer(models.Model):
     email = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class Category(models.Model):
@@ -51,12 +51,10 @@ class Product(models.Model):
         return reverse ('home:add-to-cart', kwargs = {'slug': self.slug})
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete = models.SET_NULL, blank=True, null=True)
-    date_ordered = models.DateTimeField(default=False, null=True, blank=False)
+    customer = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True)
+    date_ordered = models.DateTimeField(auto_now_add=True, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
 
-    def __str__(self):
-        return self.transaction_id
     
     @property
     def get_cart_total(self):
