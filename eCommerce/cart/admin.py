@@ -10,3 +10,4 @@ admin.site.register(OrderItem)
 admin.site.register(Customer)
 
 admin.site.register(Contact)
+admin.site.register(ContactUs)

@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-   
+
 
 
     <script type='text/javascript'>
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- <div class="top-bar">
         <div class="container-fluid">
             <div class="row">
@@ -83,7 +83,9 @@
 
     <nav class="navbar navbar-expand-md sticky-top">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand">Menu</a>
+            <a class= "logo" href="/">
+                <img src="{% static 'img/logo2.png '%}" alt="Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-expanded="true">
                 <span class="fas fa-bars"></span>
@@ -99,13 +101,16 @@
                     <li class="nav-item">
                         <a href="/cart" class="nav-link">Cart</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
                 </ul>
                 <div class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ request.user }}</a>
                         <div class="dropdown-menu">
-                            <a href="/logout" class="dropdown-item" style="color:black;">Logout</a> 
+                            <a href="/logout" class="dropdown-item" style="color:black;">Logout</a>
                         </div>
                     </div>
                     {% else %}
@@ -122,26 +127,7 @@
             </div>
         </div>
     </nav>
-    <!-- Bottom Bar Start -->
-    <div class="bottom-bar">
-        <div class="conatiner-fluid">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="logo">
-                        <a href="/">
-                            <img src="{% static 'img/logo.png '%}" alt="Logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="search">
-                        <input type="text" placeholder="Search. . . . .">
-                        <button> <i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     {% block content %}
 
@@ -151,26 +137,8 @@
     <div class="footer">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget">
-                        <h2>Get In Touch</h2>
-                    </div>
-                    {% for info in contact %}
-                    <div class="contact-info">
-                        <p><i class="fa fa-map-marker"></i>
-                            <span>{{info.address}}</span>
-                        </p>
-                        <p><i class="fa fa-envelope"></i>
-                            <span>{{info.email}}</span>
-                            <!-- <p>Send us your query anytime!</p> -->
-                        </p>
-                        <p><i class="fa fa-phone"></i>
-                            <span>+(977) {{info.phone}}</span>
-                        </p>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="col-lg-3 col-md-6">
+
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <h2>Follow Us</h2>
                     </div>
@@ -184,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <h2>Company Info</h2>
                     </div>
@@ -194,7 +162,7 @@
                         <li><a href="#">Terms & Condition</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <h2>Purchase Info</h2>
                     </div>
@@ -223,7 +191,7 @@
 
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-   
+
     <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 </body>

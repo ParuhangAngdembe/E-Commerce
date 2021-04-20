@@ -24,7 +24,7 @@ class HomeView(BaseView):
             0:8]
         self.views['sale'] = Product.objects.filter(
             label="Sale Product")[0:3]
-        self.views['contact'] = Contact.objects.all()
+        # self.views['contact'] = Contact.objects.all()
         self.views['categories'] = Category.objects.all()
 
         return render(request, 'index.html', self.views)
@@ -151,6 +151,8 @@ def deleteCategory(request, slug):
     return render(request, 'deletecategory.html', context)
 
 # --------------------------------------------------------------------------------CART
+
+
 @login_required(login_url='/login')
 def cart(request):
     if request.user.is_authenticated:
@@ -235,3 +237,30 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('/')
+
+# -------------------------------------------------------------Contact page-----------
+
+
+def contact(request):
+    context = {}
+    if request.method == "POST":
+        # yo request vaneko chai Form ma vako input tag ko name
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        data =ContactUs.objects.create(
+# models' field name = vairable
+            name = name,
+            email = email,
+            subject = subject,
+            message = message
+        )
+        data.save()
+        context['success']="Your Message Was Sent"
+
+    context['contact']=Contact.objects.all()
+    # yo objects vanna khojeko, database ko 'row'
+
+    return render(request,'contact.html', context)

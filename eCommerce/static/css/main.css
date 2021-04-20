@@ -4,6 +4,10 @@ body{
     background:#ccc;
 }
 /*------------------ top-bar styling----------------- */
+.logo img{
+    width: 100px;
+    height: 50px;
+}
 .top-bar{
     padding: 3px 52px 3px 52px;
     font-size: 14px;
@@ -164,3 +168,4 @@ ul.carousel-indicators li.active{
     width:100%;
     margin:auto;
 }
+

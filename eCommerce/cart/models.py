@@ -98,6 +98,17 @@ class Contact(models.Model):
     email = models.CharField(max_length= 100)
     phone = models.CharField(max_length = 20 , null = True, blank = False)
     address = models.CharField(max_length = 100, null = True, blank = False )
+    street = models.CharField(max_length=100)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class ContactUs(models.Model):
+    name= models.CharField(max_length=150)
+    email = models.CharField(max_length=250)
+    subject = models.CharField(max_length=550)
+    message = models.TextField(null=True)
 
     def __str__(self):
         return self.name
