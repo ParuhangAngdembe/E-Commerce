@@ -45,6 +45,93 @@ def allProducts(request):
     }
     return render(request, 'allproduct.html', context)
 
+# --------------------------------------------------------------------------------CART
+
+
+@login_required(login_url='/login')
+def cart(request):
+    if request.user.is_authenticated:
+        customer = request.user   
+        orders = Order.objects.filter(customer=customer)
+        items = []
+        total = 0
+        cart_items = 0
+        for order in orders:
+            itemlist = OrderItem.objects.filter(order=order)
+            for item in itemlist:
+                total = total + item.product.price * item.quantity
+                cart_items = cart_items + 1
+                items.append(item)
+ 
+        print(orders)
+        print(items)
+        order = {'get_cart_total': total, 'get_cart_items': cart_items}
+        context = {'items': items, 'order': order, }
+        return render(request, 'cart.html', context)
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        context = {'items': items, 'order': order, }
+        return render(request, 'cart.html', context)
+
+
+@login_required(login_url='/login')
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+    print('productId:', productId)
+    print('action:', action)
+
+    customer = request.user
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer)
+    orderItem, created = OrderItem.objects.get_or_create(
+        order=order, product=product)
+
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity+1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+
+    orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item was added', safe=False)
+
+
+@login_required(login_url='/login')
+def checkout(request):
+    context = {}
+    if request.method == "POST":
+        # yo request vaneko chai Form ma vako input tag ko name
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        zipcode = request.POST['zipcode']
+
+        customer = request.user
+        order= Order.objects.get(customer=customer)
+
+       
+        data = ShippingAddress.objects.create(
+            # models' field name = vairable
+            order = order,
+            address=address,
+            city=city,
+            state=state,
+            zipcode=zipcode,
+        )
+        data.save()
+        context['success'] = "Order Confirm"
+
+    # yo objects vanna khojeko, database ko 'row'
+
+    return render(request, 'checkout.html', context)
+
+
 # ---------------------------------------------------------------------------Admin Dashboard
 
 @login_required(login_url='/login')
@@ -57,9 +144,10 @@ def main(request):
     context = {
         'ttl_prd': ttl_prd,
         'ttl_cat': ttl_cat,
-        'messages': messages,      
+        'messages': messages,
     }
     return render(request, 'admindash.html', context)
+
 
 @login_required(login_url='/login')
 def createProduct(request):
@@ -73,6 +161,7 @@ def createProduct(request):
         'form': ProductForm,
     }
     return render(request, 'createproduct.html', context)
+
 
 @login_required(login_url='/login')
 def updateProduct(request, slug):
@@ -91,6 +180,7 @@ def updateProduct(request, slug):
 
     return render(request, 'createproduct.html', context)
 
+
 @login_required(login_url='/login')
 def deleteProduct(request, slug):
     data = Product.objects.get(slug=slug)
@@ -104,6 +194,7 @@ def deleteProduct(request, slug):
 
     return render(request, 'deleteproduct.html', context)
 
+
 def allMessages(request):
     allmsg = ContactUs.objects.all()
     context = {
@@ -112,6 +203,7 @@ def allMessages(request):
     return render(request, 'allmsg.html', context)
 
 # ---------------------------------------------------------------------------CATEGORY CRUD
+
 @login_required(login_url='/login')
 def createCategory(request):
     if request.method == "POST":
@@ -156,66 +248,6 @@ def deleteCategory(request, slug):
 
     return render(request, 'deletecategory.html', context)
 
-# --------------------------------------------------------------------------------CART
-
-@login_required(login_url='/login')
-def cart(request):
-    if request.user.is_authenticated:
-        # customer = request.user.customer
-        customer = request.user
-        # order, created = Order.objects.get_or_create(customer=customer)
-        orders = Order.objects.filter(customer=customer)
-        items = []
-        total = 0
-        cart_items = 0
-        for order in orders:
-            itemlist = OrderItem.objects.filter(order=order)
-            for item in itemlist:
-                total = total + item.product.price * item.quantity
-                cart_items = cart_items + 1
-                items.append(item)
-        # items = OrderItem.objects.filter(order=order)
-        print(orders)
-        print(items)
-        order = {'get_cart_total': total, 'get_cart_items': cart_items}
-        context = {'items': items, 'order': order, }
-        return render(request, 'cart.html', context)
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        context = {'items': items, 'order': order, }
-        return render(request, 'cart.html', context)
-
-@login_required(login_url='/login')
-def updateItem(request):
-    data = json.loads(request.body)
-    productId = data['productId']
-    action = data['action']
-    print('productId:', productId)
-    print('action:', action)
-
-    customer = request.user
-    product = Product.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(customer=customer)
-    orderItem, created = OrderItem.objects.get_or_create(
-        order=order, product=product)
-
-    if action == 'add':
-        orderItem.quantity = (orderItem.quantity+1)
-    elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
-
-    orderItem.save()
-
-    if orderItem.quantity <= 0:
-        orderItem.delete()
-
-    return JsonResponse('Item was added', safe=False)
-
-
-@login_required(login_url='/login')
-def checkout(request):
-    return render(request, 'checkout.html')
 # ---------------------------------------------------------------------------LOGIN CRUD
 
 
@@ -259,7 +291,8 @@ def logoutUser(request):
     logout(request)
     return redirect('/')
 
-# -------------------------------------------------------------Contact page-----------
+# -------------------------------------------------------------Contact page
+
 
 def contact(request):
     context = {}
@@ -270,22 +303,23 @@ def contact(request):
         subject = request.POST['subject']
         message = request.POST['message']
 
-        data =ContactUs.objects.create(
-        # models' field name = vairable
-            name = name,
-            email = email,
-            subject = subject,
-            message = message
+        data = ContactUs.objects.create(
+            # models' field name = vairable
+            name= name,
+            email= email,
+            subject= subject,
+            message= message
         )
         data.save()
-        context['success']="Your Message Was Sent"
+        context['success'] = "Your Message Was Sent"
 
-   
-    context['contact']=Contact.objects.all()
+
+    context['contact'] = Contact.objects.all()
     # yo objects vanna khojeko, database ko 'row'
 
-    return render(request,'contact.html', context)
+    return render(request, 'contact.html', context)
 
-#---------------------------------------------------------------Empty Page
+# ---------------------------------------------------------------Empty Page
+
 def emptyLink(request):
     return render(request, 'empty.html')

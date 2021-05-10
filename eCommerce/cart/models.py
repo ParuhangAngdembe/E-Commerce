@@ -53,8 +53,7 @@ class Order(models.Model):
     customer = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
-
-    
+  
     @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
@@ -79,7 +78,6 @@ class OrderItem(models.Model):
         return total
 
 class ShippingAddress(models.Model):
-    customer= models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)

@@ -26,11 +26,15 @@
             <div class="box-element" id="form-wrapper">
                 <h3>Shipping Information</h3>
                 <hr>
-                <form id="form">
-                    <div id="user-info">
+                <form id="form" method="POST">
+                    {%csrf_token%}
+                    <!-- <div id="user-info">
                         <div class="form-field">
-                            <input required class="form-control form-control-sm" type="text" name="name"
-                                placeholder="Name..">
+                            <div class="input-group-append">
+								<span class="input-group-text">Name</span>
+							</div>
+							{{checkform.name}}
+                          
                         </div>
                         <div class="form-field">
                             <input required class="form-control form-control-sm" type="email" name="email"
@@ -55,7 +59,27 @@
                         </div>
                     </div>
                     <input id="form-button" class="btn btn-success" type="submit" value="Continue">
-                  <a class="btn btn-outline-dark" href="/cart">&#x2190; Back to Cart</a>
+                  <a class="btn btn-outline-dark" href="/cart">&#x2190; Back to Cart</a> -->
+                
+                    {% csrf_token %}
+                    <div class="row">	
+                        <div class="col-lg-6 form-group">
+
+                            <input name="address" placeholder="Enter address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter address'" class="common-input mb-20 form-control" required="" type="text">
+                            <input name="city" placeholder="Enter city" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter city'" class="common-input mb-20 form-control" required="" type="text">
+                            <input name="state" placeholder="Enter state" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter state'" class="common-input mb-20 form-control" required="" type="text">
+                            <input name="zipcode" placeholder="Enter zipcode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter zipcode'" class="common-input mb-20 form-control" required="" type="text">
+                            
+                        </div>
+                        
+                        <div class="col-lg-12">
+                            <div class="alert-msg" style="text-align: left;"></div>
+                            <!-- <button class="btn btn-primary" style="float: right;">Checkout</button> -->
+                            <input id="form-button" class="btn btn-success" type="submit" value="Continue">
+                            <a class="btn btn-outline-dark" href="/cart">&#x2190; Back to Cart</a>
+                        </div>
+                    </div>
+
                 </form>
             
             </div>  
